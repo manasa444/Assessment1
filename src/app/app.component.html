@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<style>
+table {
+    margin-top: 2%;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  border:1px solid black;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+t{
+border:solid black
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+.overlay {
+  position: absolute;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: gray;
+}
+ h5
+ {
+     margin-top: 1%;
+ }
+</style>
+</head>
+<body>
+    {{reload()}}       
+<h5>Employee Details({{employees.length}})</h5>
+
+<table class=id>
+    <tr>
+      
+      <th > 
+  <select  [(ngModel)]="chosendept"  >
+    <option   *ngFor="let i of uniquedepartments" selected="i==={{All}}"  [value]=i  >{{i}}</option>
+
+  </select>
+      
+      </th>
+      <th><input  [(ngModel)]="chosenMod"  type="text" placeholder="Name/Email" id="uniqueID" ></th>
+      <th ><button (click)="Search()">Search</button>
+      </th>
+      <th><button (click)="reload()">Reset and Reload Data</button></th>
+      <th>
+        <select  [(ngModel)]="chosensort" (ngModelChange)="sort()">
+            <option  value="name[a-z]">Sort By(name[a-z]):</option>
+            <option value="name[z-a]">name[z-a]</option>
+            <option value="Age">Age</option>
+            <option value="Email">Email</option>
+          </select>
+    </th>
+    </tr>
+    
+
+  </table>
+<table id="myTable">
+  <tr>
+    <th>Employee name</th>
+    <th>Age</th>
+    <th>Email address</th>
+    <th>Department</th>
+  </tr>
+  
+  <tr *ngFor="let i of ProductDetails">
+    <td>{{i.name}}</td>
+    <td>{{i.age}}</td>
+    <td>{{i.email}}</td>
+   
+    <td class="container"  >{{i.departments.length}}<p class=overlay >{{i.departments}} </p> </td>
+       
+
+
+</tr>
+
+</table>
+
+</body>
+</html>
